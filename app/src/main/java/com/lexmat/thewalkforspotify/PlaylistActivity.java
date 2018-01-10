@@ -42,6 +42,7 @@ public class PlaylistActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
         intent = getIntent();
 
+
         AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(CLIENT_ID,
                 AuthenticationResponse.Type.TOKEN,
                 REDIRECT_URI);
@@ -50,7 +51,7 @@ public class PlaylistActivity extends AppCompatActivity implements
 
         AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request);
 
-        listView = (ListView) findViewById(R.id.listView);
+        listView = findViewById(R.id.listView);
 
         String[] categories = intent.getStringArrayExtra("categories");
         ArrayList<Playlist> choices = new DatabaseHelper(this).getPlaylists(categories);
@@ -61,7 +62,10 @@ public class PlaylistActivity extends AppCompatActivity implements
         ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, choiceNames);
 
+        Log.d("Playlist Activity", listView.toString());
+        Log.d("Playlist Activity", "choiceNames: "+choiceNames.toString());
 
+        listView.setAdapter(listAdapter);
     }
 
     @Override

@@ -55,16 +55,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean isEmpty(){
         SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT * FROM " + TABLE_NAME, null).getCount() > 0;
+         return !db.rawQuery("SELECT * FROM " + TABLE_NAME, null).moveToFirst();
     }
+
 
     private Cursor getPlaylistCursor(String[] categories){
         String query = "SELECT * FROM " + TABLE_NAME
                 + " WHERE " +
-                " COL_4 = " + "\"" + categories[0] + "\"" +
-                " COL_5 = " + "\"" + categories[1] + "\"" +
-                " COL_6 = " + "\"" + categories[2] + "\"" +
-                " COL_7 = " + "\"" + categories[3] + "\"";
+                COL_4 + " = " + "\"" + categories[0] + "\"" +
+                " AND " + COL_5 + " = " + "\"" + categories[1] + "\"" +
+                " AND " + COL_6 + " = " + "\"" + categories[2] + "\"" +
+                " AND " + COL_7 + " = " + "\"" + categories[3] + "\"";
         SQLiteDatabase db = this.getWritableDatabase();
         return db.rawQuery(query, null);
     }

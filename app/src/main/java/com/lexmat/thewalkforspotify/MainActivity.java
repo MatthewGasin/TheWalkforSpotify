@@ -2,6 +2,9 @@ package com.lexmat.thewalkforspotify;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends Activity {
@@ -14,6 +17,8 @@ public class MainActivity extends Activity {
         if(db.isEmpty()){
             fillDatabase();
         }
+
+
 
 
         super.onCreate(savedInstanceState);
